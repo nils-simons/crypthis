@@ -1,3 +1,3 @@
 # crypthis
 
-Cryptthis is a Open Source low encryption algorithms.
+Crypthis is a Open Source low encryption algorithms.

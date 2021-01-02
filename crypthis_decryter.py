@@ -1,13 +1,17 @@
 cryptedDataFile = open("crypted_data.crypthis", "r")
-toDecrypt = cryptedDataFile.read()
+
+
+toDecrypt = int(cryptedDataFile.read())
 cryptedDataFile.close()
 passwd = input('Password: ')
+
+
+
+from fractions import Fraction
+
 def toBinary(str):
     bina = ' '.join(format(ord(x), 'b') for x in str)
     return bina.replace(' ', '')
-
-decrypted = int(toDecrypt) - int(toBinary(passwd))
-# print(int(decrypted))
 
 def toDecimal(binary):
     decimal, i = 0, 0
@@ -18,6 +22,9 @@ def toDecimal(binary):
         i += 1
     return (decimal)
 
+decrypted = Fraction(toDecrypt)/ Fraction(toBinary(passwd))
+print(int(decrypted))
+
 str_data = ''
 for i in range(0, len(str(decrypted)), 7):
     temp_data = int(str(decrypted)[i:i + 7])
@@ -25,7 +32,7 @@ for i in range(0, len(str(decrypted)), 7):
     str_data = str_data + chr(decimal_data)
 
 str_data = str_data.replace('__space__', ' ')
-toWriteDecryptedFile = open("decrypted_data.txt", "a")
+toWriteDecryptedFile = open("decrypted_data.txt", "w")
 toWriteDecryptedFile.write(str_data)
 toWriteDecryptedFile.close()
 print("Decrypted Text: " + str_data)
